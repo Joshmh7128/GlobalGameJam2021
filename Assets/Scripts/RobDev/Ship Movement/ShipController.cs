@@ -149,6 +149,8 @@ public class ShipController : MonoBehaviour
     {
         rb.velocity = transform.forward * CalculateSpeedWithWind();
 
+        //rb.AddTorque(Vector3.up * turnStats.TurnRate);
+
         transform.rotation = Quaternion.Euler(0, turnStats.TurnRate + transform.rotation.eulerAngles.y, 0);
     }
 

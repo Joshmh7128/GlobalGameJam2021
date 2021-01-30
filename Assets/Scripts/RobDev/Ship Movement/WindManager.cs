@@ -41,7 +41,7 @@ public class WindManager : MonoBehaviour
         lastWindRotation = windDirection.eulerAngles.y;
         nextWindRotation = lastWindRotation + Random.Range(-50f, 50f);
 
-        yield return new WaitForSeconds(Random.Range(5, 6));
+        yield return new WaitForSeconds(Random.Range(10, 60));
 
         StartCoroutine(nameof(ChangeWindRotation));
     }
