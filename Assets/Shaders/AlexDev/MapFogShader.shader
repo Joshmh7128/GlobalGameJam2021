@@ -33,9 +33,6 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
-            sampler2D _FogTex;
-            float4 _FogTex_ST;
-
             v2f vert (appdata v)
             {
                 v2f o;
@@ -48,8 +45,7 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 fogCol = tex2D(_FogTex, i.uv);
-                col = lerp(col, float4(1,1,1,1), fogCol);
+                col = lerp(col, float4(1,1,1,1), col.w);
                 return col;
             }
             ENDCG
