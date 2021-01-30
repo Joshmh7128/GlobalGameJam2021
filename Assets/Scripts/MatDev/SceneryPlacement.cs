@@ -38,7 +38,7 @@ public class SceneryPlacement : MonoBehaviour
                 // Get random prefab
                 GameObject prefab = prefabs[Random.Range(0, prefabs.Length - 1)];
                 // Instantiate prefab
-                scenery.Add(Instantiate(prefab, hit.point, Quaternion.identity, transform));
+                scenery.Add(Instantiate(prefab, hit.point, Quaternion.Euler(0, Random.Range(0, 359), 0), transform));
             }
         }
     }
