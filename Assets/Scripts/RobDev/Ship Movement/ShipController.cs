@@ -76,14 +76,17 @@ public class ShipController : MonoBehaviour
 
     void ProcessInput()
     {
+        float newSpeed = 0;
         if (input.Forward && speedStats.Speed < speedStats.MaxSpeed)
         {
-            speedStats.Speed += speedStats.Acceleration;
+            newSpeed = speedStats.Speed + speedStats.Acceleration;
         }
         else
         {
-            speedStats.Speed = Mathf.Clamp(speedStats.Speed - (input.Backward ? speedStats.Acceleration : speedStats.Drag), 0, speedStats.MaxSpeed);
+            newSpeed = speedStats.Speed - (input.Backward ? speedStats.Acceleration : speedStats.Drag);
         }
+
+        speedStats.Speed = Mathf.Clamp(newSpeed, 0, speedStats.MaxSpeed);
 
         float newTurnRate = 0;
         if (input.RudderLeft ^ input.RudderRight)
