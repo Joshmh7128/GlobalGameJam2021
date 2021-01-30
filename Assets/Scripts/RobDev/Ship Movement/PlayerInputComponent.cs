@@ -28,17 +28,17 @@ public class PlayerInputComponent : InputComponent
         {
             Pause = inputPlayer.GetButtonDown("Pause");
 
-            Forward = inputPlayer.GetButtonDown("Forwards");
+            Forward = inputPlayer.GetButton("Forwards");
 
-            Backward = inputPlayer.GetButtonDown("Backwards");
+            Backward = inputPlayer.GetButton("Backwards");
 
-            RudderLeft = inputPlayer.GetButtonDown("RudderLeft");
+            RudderLeft = inputPlayer.GetButton("RudderLeft");
 
-            RudderRight = inputPlayer.GetButtonDown("RudderRight");
+            RudderRight = inputPlayer.GetButton("RudderRight");
 
-            SailsLeft = inputPlayer.GetButtonDown("SailsLeft");
+            SailsLeft = inputPlayer.GetButton("SailsLeft");
 
-            SailsRight = inputPlayer.GetButtonDown("SailsRight");
+            SailsRight = inputPlayer.GetButton("SailsRight");
         }
     }
 }
