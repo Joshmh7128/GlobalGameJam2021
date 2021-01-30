@@ -53,7 +53,7 @@ public class ShipController : MonoBehaviour
     private ShipTurnStats turnStats;
 
     [System.Serializable]
-    private class ShipMastStats
+    public class ShipMastStats
     {
         [SerializeField]
         private float mastRotation;
@@ -73,6 +73,7 @@ public class ShipController : MonoBehaviour
     }
     [SerializeField]
     private ShipMastStats mastStats;
+    public ShipMastStats MastStats { get { return mastStats; } private set { mastStats = value; } }
 
     #endregion
 
@@ -80,6 +81,7 @@ public class ShipController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private GameObject windManager;
+    public GameObject WindManager { get { return windManager; } }
 
     #endregion
 
@@ -109,8 +111,6 @@ public class ShipController : MonoBehaviour
         RotateMast();
 
         MoveRudder();
-
-        CalculateSpeedWithWind();
     }
 
     void ProcessInput()
@@ -139,15 +139,15 @@ public class ShipController : MonoBehaviour
 
         turnStats.TurnRate = Mathf.Clamp(newTurnRate, -turnStats.MaxTurnRate, turnStats.MaxTurnRate);
 
-        float newRotation = mastStats.MastRotation;
+        float newRotation = MastStats.MastRotation;
 
-        newRotation += ((input.SailsLeft ? -1 : 0) * mastStats.MastRotationSpeed) + ((input.SailsRight ? 1 : 0) * mastStats.MastRotationSpeed);
-        mastStats.MastRotation = Mathf.Clamp(newRotation, -mastStats.MaxMastRotation, mastStats.MaxMastRotation);
+        newRotation += ((input.SailsLeft ? -1 : 0) * MastStats.MastRotationSpeed) + ((input.SailsRight ? 1 : 0) * MastStats.MastRotationSpeed);
+        MastStats.MastRotation = Mathf.Clamp(newRotation, -MastStats.MaxMastRotation, MastStats.MaxMastRotation);
     }
 
     void MoveShip()
     {
-        rb.velocity = transform.forward * CalculateSpeedWithWind();
+        rb.velocity = transform.forward * CalculateSpeedWithWind(CalculateWind());
 
         //rb.AddTorque(Vector3.up * turnStats.TurnRate);
 
@@ -161,28 +161,24 @@ public class ShipController : MonoBehaviour
 
     void RotateMast()
     {
-        mastStats.Mast.transform.localRotation = Quaternion.AngleAxis(mastStats.MastRotation, Vector3.up);
+        MastStats.Mast.transform.localRotation = Quaternion.AngleAxis(MastStats.MastRotation, Vector3.up);
     }
 
-    float CalculateSpeedWithWind()
+    public float CalculateWind()
     {
         float temp = 0;
 
-        temp = Vector3.Dot(mastStats.Mast.transform.forward, windManager.transform.forward);
+        temp = Vector3.Dot(MastStats.Mast.transform.forward, windManager.transform.forward);
 
-        if (temp > 0)
-        {
-            mastStats.Mast.GetComponent<MeshRenderer>().material.color = Color.green;
-        }
-        else
-        {
-            mastStats.Mast.GetComponent<MeshRenderer>().material.color = Color.red;
-        }
+        return temp;
+    }
 
-        temp += 0.9f;
+    float CalculateSpeedWithWind(float wind)
+    {
+        wind += 0.9f;
 
-        temp *= 0.6f;
+        wind *= 0.6f;
 
-        return speedStats.Speed * temp;
+        return speedStats.Speed * wind;
     }
 }

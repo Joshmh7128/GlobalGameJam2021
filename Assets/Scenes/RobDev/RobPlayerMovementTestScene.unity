@@ -1596,7 +1596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2020602613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,9 +1664,9 @@ MonoBehaviour:
     maxTurnRate: 1
   mastStats:
     mastRotation: 0
-    mastRotationSpeed: 1.07
-    maxMastRotation: 63.9
-    mast: {fileID: 865945351}
+    mastRotationSpeed: 0.25
+    maxMastRotation: 60
+    mast: {fileID: 0}
   windManager: {fileID: 1791470815}
   shipFlag: {fileID: 1400586290}
   rudder: {fileID: 82668176}
@@ -1798,7 +1798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2110246599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,8 +1823,8 @@ MonoBehaviour:
     maxTurnRate: 1
   mastStats:
     mastRotation: 0
-    mastRotationSpeed: 1.07
-    maxMastRotation: 63.9
+    mastRotationSpeed: 0.25
+    maxMastRotation: 60
     mast: {fileID: 819718733}
   windManager: {fileID: 1791470815}
   shipFlag: {fileID: 1435698410}
