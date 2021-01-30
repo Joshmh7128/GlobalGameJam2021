@@ -23,7 +23,7 @@ public class ShipController : MonoBehaviour
         private float drag = 0.15f;
         public float Drag { get { return drag; } set { drag = value; } }
 
-        [SerializeField, Range(0.5f, 10)]
+        [SerializeField, Range(0.5f, 50)]
         private float maxSpeed = 5;
         public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     }
