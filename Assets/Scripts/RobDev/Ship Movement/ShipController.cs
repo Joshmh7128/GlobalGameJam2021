@@ -27,7 +27,6 @@ public class ShipController : MonoBehaviour
         private float maxSpeed = 5;
         public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     }
-
     [SerializeField]
     private ShipSpeedStats speedStats;
 
@@ -50,7 +49,6 @@ public class ShipController : MonoBehaviour
         private float maxTurnRate = 5;
         public float MaxTurnRate { get { return maxTurnRate; } set { maxTurnRate = value; } }
     }
-
     [SerializeField]
     private ShipTurnStats turnStats;
 
@@ -80,6 +78,17 @@ public class ShipController : MonoBehaviour
 
     #region Movement
     private Rigidbody rb;
+    [SerializeField]
+    private GameObject windManager;
+
+    #endregion
+
+    #region visuals
+    [SerializeField]
+    private GameObject shipFlag;
+
+    [SerializeField]
+    private GameObject rudder;
     #endregion
 
 
@@ -91,11 +100,15 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate()
     {
+        shipFlag.transform.rotation = windManager.transform.rotation;
+
         ProcessInput();
 
         MoveShip();
 
         RotateMast();
+
+        MoveRudder();
 
         CalculateSpeedWithWind();
     }
@@ -139,21 +152,21 @@ public class ShipController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, turnStats.TurnRate + transform.rotation.eulerAngles.y, 0);
     }
 
+    void MoveRudder()
+    {
+        rudder.transform.localEulerAngles = new Vector3(0, -turnStats.TurnRate * 10, 0);
+    }
+
     void RotateMast()
     {
         mastStats.Mast.transform.localRotation = Quaternion.AngleAxis(mastStats.MastRotation, Vector3.up);
     }
 
-    public GameObject windMan;
-
     float CalculateSpeedWithWind()
     {
         float temp = 0;
 
-        temp = Vector3.Dot(mastStats.Mast.transform.forward, windMan.transform.forward);
-
-        Debug.Log("Mast " + mastStats.Mast.transform.rotation.eulerAngles);
-        Debug.Log("Wind " + WindManager.WindDirection.eulerAngles);
+        temp = Vector3.Dot(mastStats.Mast.transform.forward, windManager.transform.forward);
 
         if (temp > 0)
         {
@@ -163,6 +176,10 @@ public class ShipController : MonoBehaviour
         {
             mastStats.Mast.GetComponent<MeshRenderer>().material.color = Color.red;
         }
+
+        temp += 0.9f;
+
+        temp *= 0.6f;
 
         return speedStats.Speed * temp;
     }

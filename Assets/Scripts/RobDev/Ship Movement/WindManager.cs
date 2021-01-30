@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WindManager : MonoBehaviour
 {
-    private static Quaternion windDirection = new Quaternion();
-    public static Quaternion WindDirection { get { return windDirection; } private set { windDirection = value; } }
+    private Quaternion windDirection = new Quaternion();
+    public Quaternion WindDirection { get { return windDirection; } private set { windDirection = value; } }
 
     private float windRotation = 0;
 
@@ -44,10 +44,5 @@ public class WindManager : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(5, 6));
 
         StartCoroutine(nameof(ChangeWindRotation));
-    }
-
-    void OnDrawGizmos()
-    {
-        Debug.DrawRay(transform.position, transform.forward * 5, Color.yellow, 0.1f);
     }
 }
