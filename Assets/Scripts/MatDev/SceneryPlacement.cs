@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +6,8 @@ public class SceneryPlacement : MonoBehaviour
     public GameObject terrain;
     public GameObject[] prefabs;
     public int objectsCount;
-    public float updateTimeSeconds;
 
     private List<GameObject> scenery = new List<GameObject>();
-    private float lastUpdate;
     
     void Start()
     {
@@ -18,19 +15,6 @@ public class SceneryPlacement : MonoBehaviour
             terrain = transform.gameObject;
         }
         PlaceObjects();
-        lastUpdate = Time.time;
-    }
-
-    void Update()
-    {
-        if (Time.time - lastUpdate >= updateTimeSeconds) {
-            foreach (GameObject sceneryObject in scenery) {
-                Destroy(sceneryObject);
-            }
-            scenery.Clear();
-            PlaceObjects();
-            lastUpdate = Time.time;
-        }
     }
 
     void PlaceObjects()
