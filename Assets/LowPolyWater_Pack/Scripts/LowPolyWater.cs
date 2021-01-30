@@ -16,11 +16,16 @@ namespace LowPolyWater
         MeshFilter meshFilter;
         Mesh mesh;
         Vector3[] vertices;
+        private MeshCollider _collider;
+
+        private Vector3[] _colliderVertices;
 
         private void Awake()
         {
             //Get the Mesh Filter of the gameobject
             meshFilter = GetComponent<MeshFilter>();
+            _collider = GetComponent<MeshCollider>();
+            _colliderVertices = _collider.sharedMesh.vertices;
         }
 
         void Start()
@@ -89,7 +94,7 @@ namespace LowPolyWater
 
                 //Get the distance between wave origin position and the current vertex
                 float distance = Vector3.Distance(v, waveOriginPosition);
-                distance = (distance % waveLength) * 0.025f; // not correct
+                distance = (distance % waveLength) / waveLength; // not correct
 
                 //Oscilate the wave height via sine to create a wave effect
                 v.y = waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency
@@ -97,6 +102,7 @@ namespace LowPolyWater
                 
                 //Update the vertex
                 vertices[i] = v;
+                _colliderVertices[i] = v;
             }
 
             //Update the mesh properties
@@ -104,6 +110,8 @@ namespace LowPolyWater
             mesh.RecalculateNormals();
             mesh.MarkDynamic();
             meshFilter.mesh = mesh;
+            //_collider.sharedMesh.
+            //_collider.sharedMesh = mesh;
         }
     }
 }
