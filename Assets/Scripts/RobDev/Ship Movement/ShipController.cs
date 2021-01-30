@@ -54,6 +54,28 @@ public class ShipController : MonoBehaviour
     [SerializeField]
     private ShipTurnStats turnStats;
 
+    [System.Serializable]
+    private class ShipMastStats
+    {
+        [SerializeField]
+        private float mastRotation;
+        public float MastRotation { get { return mastRotation; } set { mastRotation = value; } }
+
+        [SerializeField, Range(0.25f, 5)]
+        private float mastRotationSpeed = 0.25f;
+        public float MastRotationSpeed { get { return mastRotationSpeed; } }
+
+        [SerializeField, Range(45, 90)]
+        private float maxMastRotation = 60;
+        public float MaxMastRotation { get { return maxMastRotation; } }
+
+        [SerializeField]
+        private GameObject mast;
+        public GameObject Mast { get { return mast; } }
+    }
+    [SerializeField]
+    private ShipMastStats mastStats;
+
     #endregion
 
     #region Movement
@@ -72,6 +94,10 @@ public class ShipController : MonoBehaviour
         ProcessInput();
 
         MoveShip();
+
+        RotateMast();
+
+        CalculateSpeedWithWind();
     }
 
     void ProcessInput()
@@ -96,16 +122,48 @@ public class ShipController : MonoBehaviour
         else if (turnStats.TurnRate != 0)
         {
             newTurnRate = turnStats.TurnRate + (turnStats.TurnRate > 0 ? -turnStats.Drag : turnStats.Drag);
-            Debug.Log(newTurnRate);
         }
 
         turnStats.TurnRate = Mathf.Clamp(newTurnRate, -turnStats.MaxTurnRate, turnStats.MaxTurnRate);
+
+        float newRotation = mastStats.MastRotation;
+
+        newRotation += ((input.SailsLeft ? -1 : 0) * mastStats.MastRotationSpeed) + ((input.SailsRight ? 1 : 0) * mastStats.MastRotationSpeed);
+        mastStats.MastRotation = Mathf.Clamp(newRotation, -mastStats.MaxMastRotation, mastStats.MaxMastRotation);
     }
 
     void MoveShip()
     {
-        rb.velocity = transform.forward * speedStats.Speed;
+        rb.velocity = transform.forward * CalculateSpeedWithWind();
 
         transform.rotation = Quaternion.Euler(0, turnStats.TurnRate + transform.rotation.eulerAngles.y, 0);
+    }
+
+    void RotateMast()
+    {
+        mastStats.Mast.transform.localRotation = Quaternion.AngleAxis(mastStats.MastRotation, Vector3.up);
+    }
+
+    public GameObject windMan;
+
+    float CalculateSpeedWithWind()
+    {
+        float temp = 0;
+
+        temp = Vector3.Dot(mastStats.Mast.transform.forward, windMan.transform.forward);
+
+        Debug.Log("Mast " + mastStats.Mast.transform.rotation.eulerAngles);
+        Debug.Log("Wind " + WindManager.WindDirection.eulerAngles);
+
+        if (temp > 0)
+        {
+            mastStats.Mast.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        else
+        {
+            mastStats.Mast.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+
+        return speedStats.Speed * temp;
     }
 }
