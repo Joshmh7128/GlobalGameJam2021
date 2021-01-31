@@ -40,10 +40,14 @@ public class SceneryPlacement : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(coordinates, Vector3.down, out hit))
             {
-                // Get random prefab
-                GameObject prefab = prefabs[Random.Range(0, prefabs.Length - 1)];
-                // Instantiate prefab
-                scenery.Add(Instantiate(prefab, hit.point, Quaternion.Euler(0, Random.Range(0, 359), 0), transform));
+                // Make sure that the collider is in fact taking scenery
+                if (hit.collider.CompareTag("SceneryPlaceable"))
+                {
+                    // Get random prefab
+                    GameObject prefab = prefabs[Random.Range(0, prefabs.Length - 1)];
+                    // Instantiate prefab
+                    scenery.Add(Instantiate(prefab, hit.point, Quaternion.Euler(0, Random.Range(0, 359), 0), transform));
+                }
             }
         }
     }
