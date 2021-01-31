@@ -10393,7 +10393,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3400616
+  m_Name: pb_Mesh-5757274
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13289,6 +13289,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSkiff
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381115132764955734, guid: cefc3e6e9b13f8489b89fedbb0229ec1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6381115132764955735, guid: cefc3e6e9b13f8489b89fedbb0229ec1,
         type: 3}
@@ -39229,7 +39234,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3400612
+  m_Name: pb_Mesh-5757270
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
