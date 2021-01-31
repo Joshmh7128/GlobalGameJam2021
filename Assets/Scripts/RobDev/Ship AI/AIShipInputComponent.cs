@@ -18,6 +18,7 @@ public class AIShipInputComponent : InputComponent
             else
             {
                 target = AIShipTargetManager.GetTarget();
+                Debug.Log(target);
                 return target;
             }
         }
@@ -46,7 +47,6 @@ public class AIShipInputComponent : InputComponent
 
                 if (Vector3.Distance(transform.position, target.transform.position) < 1)
                 {
-                    target = null;
                     StartCoroutine(nameof(SwitchTargets));
                 }
                 break;
@@ -61,6 +61,9 @@ public class AIShipInputComponent : InputComponent
         shipState = State.Wait;
 
         yield return new WaitForSeconds(5);
+
+        AIShipTargetManager.SetTargetOpen(target);
+        target = null;
 
         shipState = State.Travel;
     }
@@ -106,7 +109,6 @@ public class AIShipInputComponent : InputComponent
     {
         if (controller.CalculateWind() > 0.6f)
         {
-            //Debug.Log(controller.CalculateWind());
             SailsRight = false;
             SailsLeft = false;
             return;
@@ -119,9 +121,6 @@ public class AIShipInputComponent : InputComponent
         float sailsDegreeDirection = Mathf.Atan2(transform.forward.z, transform.forward.x) * 180 / Mathf.PI;
 
         float difference = ((windDegreeDirection - sailsDegreeDirection));
-
-        Debug.Log(difference);
-
 
         if (difference > 0 && difference <= 180)
         {
