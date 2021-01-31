@@ -31,6 +31,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &6688560444583087394
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147324070428020783}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: -0.053109527}
+  m_Size: 2.22032
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.007746959
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1609375031509720778}
+  m_Enabled: 1
 --- !u!114 &1205412969558544641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3258,25 +3277,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!205 &6688560444583087394
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8147324070428020783}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: -0.053109527}
-  m_Size: 2.22032
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.018345676
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 1609375031509720778}
-  m_Enabled: 1
 --- !u!1001 &26386230135772583
 PrefabInstance:
   m_ObjectHideFlags: 0
