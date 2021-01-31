@@ -14,7 +14,7 @@ public class PlayerInputComponent : InputComponent
     {
         inputPlayer = ReInput.players.GetSystemPlayer();
 
-        Debug.Log(inputPlayer.descriptiveName);
+        // Debug.Log(inputPlayer.descriptiveName);
     }
 
     private void Update()
@@ -39,6 +39,21 @@ public class PlayerInputComponent : InputComponent
             SailsLeft = inputPlayer.GetButton("SailsLeft");
 
             SailsRight = inputPlayer.GetButton("SailsRight");
+
+            // Makes Anchor a toggle
+            if (inputPlayer.GetButtonDown("Anchor"))
+            {
+                Anchor = !Anchor;
+            }
+
+            Fish = inputPlayer.GetButtonDown("Fish");
+            if (!Anchor && Fish)
+                Anchor = true;
+
+            Interact = inputPlayer.GetButton("Interact");
+
+
+
         }
     }
 }
