@@ -14,7 +14,7 @@ public class PlayerInputComponent : InputComponent
     {
         inputPlayer = ReInput.players.GetSystemPlayer();
 
-        Debug.Log(inputPlayer.descriptiveName);
+        //Debug.Log(inputPlayer.descriptiveName);
     }
 
     private void Update()

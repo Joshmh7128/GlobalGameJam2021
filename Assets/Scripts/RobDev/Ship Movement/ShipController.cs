@@ -96,7 +96,7 @@ public class ShipController : MonoBehaviour
         else if (turnStats.TurnRate != 0)
         {
             newTurnRate = turnStats.TurnRate + (turnStats.TurnRate > 0 ? -turnStats.Drag : turnStats.Drag);
-            Debug.Log(newTurnRate);
+            //Debug.Log(newTurnRate);
         }
 
         turnStats.TurnRate = Mathf.Clamp(newTurnRate, -turnStats.MaxTurnRate, turnStats.MaxTurnRate);

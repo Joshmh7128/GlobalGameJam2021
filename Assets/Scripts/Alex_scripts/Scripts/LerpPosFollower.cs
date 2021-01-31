@@ -11,7 +11,7 @@ namespace Alex_scripts.Scripts
 
         [SerializeField]
         private bool lockX, lockY, lockZ;
-
+        
         void Update()
         {
             Vector3 newPos = transform.position;

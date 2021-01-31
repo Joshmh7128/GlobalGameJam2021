@@ -42,6 +42,8 @@
 
             float4 _OutlineColor;
             float _OutlineWidth;
+
+            float4 _PlayerPos;
             
             v2f vert (appdata v)
             {
@@ -53,9 +55,12 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float camSize = 1000;
+                float2 bgUv = frac(float2(_PlayerPos.x / camSize, _PlayerPos.z / camSize));
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 bgCol = tex2D(_BgTex, i.uv);
+                bgUv.x += + _SinTime.y / 3;
+                fixed4 bgCol = tex2D(_BgTex, frac(i.uv + bgUv));
                 float tau = step(col.a, 0.5);
                 col = lerp(col, bgCol, tau);
                 
