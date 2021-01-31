@@ -103,6 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6932761739176550273}
+  - component: {fileID: 2303698852868983345}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -127,6 +128,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &2303698852868983345
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490759889410436080}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -1.9302635, y: -6.7733994, z: 6.1197853}
+  m_Size: 35.559563
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.021152515
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7803622171586260146}
+    - renderer: {fileID: 5884435846707764719}
+    - renderer: {fileID: 7307043462919683237}
+  m_Enabled: 1
 --- !u!1 &7008704830562347530
 GameObject:
   m_ObjectHideFlags: 0
