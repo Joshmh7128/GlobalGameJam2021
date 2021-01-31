@@ -13,20 +13,13 @@ public static class AIShipTargetManager
         {
             if (openTargets == null || openTargets == new List<int>())
             {
-                Debug.Log("Generating open targets");
                 openTargets = new List<int>();
                 for (int i = 0; i < targets.Count; i++)
                 {
                     openTargets.Add(i);
                 }
             }
-            Debug.Log(openTargets.Count);
-            string output = "Open Targets: ";
-            foreach (int i in openTargets)
-            {
-                output += i + ", ";
-            }
-            Debug.Log(output);
+
             return openTargets;
         }
     }
