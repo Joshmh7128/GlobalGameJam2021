@@ -39,6 +39,12 @@ public class PlayerInputComponent : InputComponent
             SailsLeft = inputPlayer.GetButton("SailsLeft");
 
             SailsRight = inputPlayer.GetButton("SailsRight");
+
+            // Makes Anchor a toggle
+            if (inputPlayer.GetButtonDown("Anchor"))
+            {
+                Anchor = !Anchor;
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ public static class AIShipTargetManager
                 }
             }
 
-            Debug.Log(openTargets.Count);
             return openTargets;
         }
     }
@@ -28,6 +27,10 @@ public static class AIShipTargetManager
 
     public static AIShipTarget GetTarget()
     {
+        if (OpenTargets.Count == 0)
+        {
+            return null;
+        }
         int assignedTarget = Random.Range(0, OpenTargets.Count);
         int assignedTargetIndex = OpenTargets[assignedTarget];
         OpenTargets.Remove(assignedTargetIndex);

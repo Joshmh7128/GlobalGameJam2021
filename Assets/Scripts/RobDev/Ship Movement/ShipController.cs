@@ -15,15 +15,15 @@ public class ShipController : MonoBehaviour
         private float speed;
         public float Speed { get { return speed; } set { speed = value; } }
 
-        [SerializeField, Range(0.15f, 2)]
+        [SerializeField, Range(0.15f, 5)]
         private float acceleration = 0.25f;
         public float Acceleration { get { return acceleration; } set { acceleration = value; } }
 
-        [SerializeField, Range(0, 2)]
+        [SerializeField, Range(0, 5)]
         private float drag = 0.15f;
         public float Drag { get { return drag; } set { drag = value; } }
 
-        [SerializeField, Range(0.5f, 50)]
+        [SerializeField, Range(0.5f, 100)]
         private float maxSpeed = 5;
         public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     }
@@ -37,11 +37,11 @@ public class ShipController : MonoBehaviour
         private float turnRate;
         public float TurnRate { get { return turnRate; } set { turnRate = value; } }
 
-        [SerializeField, Range(0.25f, 5)]
+        [SerializeField, Range(0.01f, 5)]
         private float acceleration = 0.5f;
         public float Acceleration { get { return acceleration; } set { acceleration = value; } }
 
-        [SerializeField, Range(0.1f, 5)]
+        [SerializeField, Range(0.01f, 5)]
         private float drag = 0.25f;
         public float Drag { get { return drag; } set { drag = value; } }
 
@@ -68,8 +68,8 @@ public class ShipController : MonoBehaviour
         public float MaxMastRotation { get { return maxMastRotation; } }
 
         [SerializeField]
-        private GameObject mast;
-        public GameObject Mast { get { return mast; } }
+        private List<GameObject> masts;
+        public List<GameObject> Masts { get { return masts; } }
     }
     [SerializeField]
     private ShipMastStats mastStats;
@@ -116,7 +116,7 @@ public class ShipController : MonoBehaviour
     void ProcessInput()
     {
         float newSpeed = 0;
-        if (input.Forward && speedStats.Speed < speedStats.MaxSpeed)
+        if (!input.Anchor && input.Forward && speedStats.Speed < speedStats.MaxSpeed)
         {
             newSpeed = speedStats.Speed + speedStats.Acceleration;
         }
@@ -161,14 +161,18 @@ public class ShipController : MonoBehaviour
 
     void RotateMast()
     {
-        MastStats.Mast.transform.localRotation = Quaternion.AngleAxis(MastStats.MastRotation, Vector3.up);
+        Quaternion newMastRot = Quaternion.AngleAxis(MastStats.MastRotation, Vector3.up);
+        foreach (GameObject m in MastStats.Masts)
+        {
+            m.transform.localRotation = newMastRot;
+        }
     }
 
     public float CalculateWind()
     {
         float temp = 0;
 
-        temp = Vector3.Dot(MastStats.Mast.transform.forward, windManager.transform.forward);
+        temp = Vector3.Dot(MastStats.Masts[0].transform.forward, windManager.transform.forward);
 
         return temp;
     }

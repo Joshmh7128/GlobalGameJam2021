@@ -18,7 +18,6 @@ public class AIShipInputComponent : InputComponent
             else
             {
                 target = AIShipTargetManager.GetTarget();
-                Debug.Log(target);
                 return target;
             }
         }
@@ -44,6 +43,10 @@ public class AIShipInputComponent : InputComponent
                 SetSpeed(true);
                 SetDirection();
                 SetSails();
+                Anchor = false;
+
+                if (Target == null)
+                    break;
 
                 if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z)) < 1)
                 {
@@ -52,6 +55,7 @@ public class AIShipInputComponent : InputComponent
                 break;
             case State.Wait:
                 SetSpeed(false);
+                Anchor = true;
                 break;
         }
     }
@@ -87,7 +91,6 @@ public class AIShipInputComponent : InputComponent
             rayHit = true;
             RudderLeft = false;
             RudderRight = true;
-            Debug.Log("Left hit");
         }
 
         if (Physics.Raycast(transform.position, (transform.forward + transform.right), out rightHit, 100, LayerMask.GetMask("ShipSteeringCollider")))
@@ -95,15 +98,13 @@ public class AIShipInputComponent : InputComponent
             rayHit = true;
             RudderLeft = true;
             RudderRight = false;
-            Debug.Log("Right Hit");
         }
 
         Debug.DrawRay(transform.position, (transform.forward + transform.right) * rightHit.distance);
         Debug.DrawRay(transform.position, (transform.forward + -transform.right) * leftHit.distance);
 
-        if (rayHit)
+        if (rayHit || Target == null)
         {
-            Debug.Log("A ray hit");
             return;
         }
 
@@ -139,7 +140,7 @@ public class AIShipInputComponent : InputComponent
 
     void SetSails()
     {
-        if (controller.CalculateWind() > 0.6f)
+        if (controller.CalculateWind() > 0.8f)
         {
             SailsRight = false;
             SailsLeft = false;
