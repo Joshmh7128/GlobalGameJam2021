@@ -1,0 +1,39 @@
+Map System:
+- On startup, create the 2D grid of everything, which is used to create the UI map and the game world.
+
+- Internal data of the UI map is:
+	- A Texture2D, _fogTexture, which has the actual Texture of the fog map.
+	- _textureData, an array of colors which make up the internal fog map.
+	- A Texture2D, _mapTexture, which has the actual Texture of the 
+
+
+Map Creation:
+- Pass in the array of tiles.
+- Create the overall map texture
+	Created by taking the size of each tile, and multiply by the dimensions of the array.
+- For each tile:
+	- call a method that creates a map texture for that tile.
+		- Each tile has the same xy size
+		- Should this be handled by the same class, or should it defer to the tile?
+	- As the tile's map texture is created, write it into the overall map texture
+		- The map texture's data is stored as a 1D array, so there will need to be proper offsets when writing each row to the texture.
+		- // This approach makes me think that the tile's map creation should be handled by the same class as the overall map creation, as it can write directly into the larger buffer.
+- After map is created, edit the alpha channel to be all white.
+
+
+Representing the player on the map:
+- Since the UI map and the game world are created from the same base data, they scale with each other perfectly.
+- Should be a simple scaling function that takes the player's world pos and converts it to a map pos.
+	- Repeat for rotation
+	- From there, Have a little icon for the player on the map.
+		- Have the player overlaid on a separate layer.
+
+	
+Fog of War:
+- At start, map is fully obscured
+- As player explores, the map is uncovered in a radius around them
+
+Tile Creation:
+- Each tile is its own prefab object, and provides a sprite(?) to represent itself in the map.
+    - Use an interface to get the icon sprite?
+- The 

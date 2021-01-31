@@ -27,7 +27,6 @@ public class ShipController : MonoBehaviour
         private float maxSpeed = 5;
         public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     }
-
     [SerializeField]
     private ShipSpeedStats speedStats;
 
@@ -50,14 +49,48 @@ public class ShipController : MonoBehaviour
         private float maxTurnRate = 5;
         public float MaxTurnRate { get { return maxTurnRate; } set { maxTurnRate = value; } }
     }
-
     [SerializeField]
     private ShipTurnStats turnStats;
+
+    [System.Serializable]
+    public class ShipMastStats
+    {
+        [SerializeField]
+        private float mastRotation;
+        public float MastRotation { get { return mastRotation; } set { mastRotation = value; } }
+
+        [SerializeField, Range(0.25f, 5)]
+        private float mastRotationSpeed = 0.25f;
+        public float MastRotationSpeed { get { return mastRotationSpeed; } }
+
+        [SerializeField, Range(45, 90)]
+        private float maxMastRotation = 60;
+        public float MaxMastRotation { get { return maxMastRotation; } }
+
+        [SerializeField]
+        private GameObject mast;
+        public GameObject Mast { get { return mast; } }
+    }
+    [SerializeField]
+    private ShipMastStats mastStats;
+    public ShipMastStats MastStats { get { return mastStats; } private set { mastStats = value; } }
 
     #endregion
 
     #region Movement
     private Rigidbody rb;
+    [SerializeField]
+    private GameObject windManager;
+    public GameObject WindManager { get { return windManager; } }
+
+    #endregion
+
+    #region visuals
+    [SerializeField]
+    private GameObject shipFlag;
+
+    [SerializeField]
+    private GameObject rudder;
     #endregion
 
 
@@ -69,9 +102,15 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate()
     {
+        shipFlag.transform.rotation = windManager.transform.rotation;
+
         ProcessInput();
 
         MoveShip();
+
+        RotateMast();
+
+        MoveRudder();
     }
 
     void ProcessInput()
@@ -96,16 +135,50 @@ public class ShipController : MonoBehaviour
         else if (turnStats.TurnRate != 0)
         {
             newTurnRate = turnStats.TurnRate + (turnStats.TurnRate > 0 ? -turnStats.Drag : turnStats.Drag);
-            Debug.Log(newTurnRate);
         }
 
         turnStats.TurnRate = Mathf.Clamp(newTurnRate, -turnStats.MaxTurnRate, turnStats.MaxTurnRate);
+
+        float newRotation = MastStats.MastRotation;
+
+        newRotation += ((input.SailsLeft ? -1 : 0) * MastStats.MastRotationSpeed) + ((input.SailsRight ? 1 : 0) * MastStats.MastRotationSpeed);
+        MastStats.MastRotation = Mathf.Clamp(newRotation, -MastStats.MaxMastRotation, MastStats.MaxMastRotation);
     }
 
     void MoveShip()
     {
-        rb.velocity = transform.forward * speedStats.Speed;
+        rb.velocity = transform.forward * CalculateSpeedWithWind(CalculateWind());
+
+        //rb.AddTorque(Vector3.up * turnStats.TurnRate);
 
         transform.rotation = Quaternion.Euler(0, turnStats.TurnRate + transform.rotation.eulerAngles.y, 0);
+    }
+
+    void MoveRudder()
+    {
+        rudder.transform.localEulerAngles = new Vector3(0, -turnStats.TurnRate * 10, 0);
+    }
+
+    void RotateMast()
+    {
+        MastStats.Mast.transform.localRotation = Quaternion.AngleAxis(MastStats.MastRotation, Vector3.up);
+    }
+
+    public float CalculateWind()
+    {
+        float temp = 0;
+
+        temp = Vector3.Dot(MastStats.Mast.transform.forward, windManager.transform.forward);
+
+        return temp;
+    }
+
+    float CalculateSpeedWithWind(float wind)
+    {
+        wind += 0.9f;
+
+        wind *= 0.6f;
+
+        return speedStats.Speed * wind;
     }
 }
