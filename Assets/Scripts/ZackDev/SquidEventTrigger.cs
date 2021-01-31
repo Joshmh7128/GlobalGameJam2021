@@ -10,6 +10,7 @@ public class SquidEventTrigger : MonoBehaviour
         public EventManager manager;
         public Crew crew;
         public Sprite picture;
+        public MoneyPouch money;
 
         public override void SuccessEvent()
         {
@@ -20,14 +21,13 @@ public class SquidEventTrigger : MonoBehaviour
         public override void FailEvent()
         {
             manager.DoConsequence(FailureText);
+            money.UpdateMoney(-5);
         }
     }
 
-    [Space(10)]
-
     public SquidEvent theEventInQuestion;
     private EventManager manager;
-
+    
     private void Awake()
     {
         manager = FindObjectOfType<EventManager>();
