@@ -45,7 +45,7 @@ public class AIShipInputComponent : InputComponent
                 SetDirection();
                 SetSails();
 
-                if (Vector3.Distance(transform.position, target.transform.position) < 1)
+                if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z)) < 1)
                 {
                     StartCoroutine(nameof(SwitchTargets));
                 }
@@ -76,6 +76,38 @@ public class AIShipInputComponent : InputComponent
 
     void SetDirection()
     {
+        #region raycasts
+        RaycastHit leftHit;
+        RaycastHit rightHit;
+
+        bool rayHit = false;
+
+        if (Physics.Raycast(transform.position, (transform.forward + -transform.right), out leftHit, 100, LayerMask.GetMask("ShipSteeringCollider")))
+        {
+            rayHit = true;
+            RudderLeft = false;
+            RudderRight = true;
+            Debug.Log("Left hit");
+        }
+
+        if (Physics.Raycast(transform.position, (transform.forward + transform.right), out rightHit, 100, LayerMask.GetMask("ShipSteeringCollider")))
+        {
+            rayHit = true;
+            RudderLeft = true;
+            RudderRight = false;
+            Debug.Log("Right Hit");
+        }
+
+        Debug.DrawRay(transform.position, (transform.forward + transform.right) * rightHit.distance);
+        Debug.DrawRay(transform.position, (transform.forward + -transform.right) * leftHit.distance);
+
+        if (rayHit)
+        {
+            Debug.Log("A ray hit");
+            return;
+        }
+
+        #endregion
         Vector3 directionToTarget = (Target.transform.position - transform.position).normalized;
 
         directionToTarget.Normalize();

@@ -11,7 +11,7 @@ public static class AIShipTargetManager
     {
         get
         {
-            if (openTargets == null || openTargets == new List<int>())
+            if (openTargets == null || openTargets.Count == 0)
             {
                 openTargets = new List<int>();
                 for (int i = 0; i < targets.Count; i++)
@@ -20,6 +20,7 @@ public static class AIShipTargetManager
                 }
             }
 
+            Debug.Log(openTargets.Count);
             return openTargets;
         }
     }
