@@ -190,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3695013313697764813}
   - component: {fileID: 8077733245827173918}
+  - component: {fileID: 1445910887348504114}
   m_Layer: 0
   m_Name: AI Target
   m_TagString: Untagged
@@ -223,6 +224,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63fb373edbd27290917cf4662a6b3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1445910887348504114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475767076996850042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 5
+  interest: 5
 --- !u!1 &5306412730704168272
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6264648798039984441}
   - component: {fileID: 98675055915340814}
+  - component: {fileID: 944228583134653216}
   m_Layer: 0
   m_Name: AI Target
   m_TagString: Untagged
@@ -266,6 +283,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63fb373edbd27290917cf4662a6b3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &944228583134653216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306412730704168272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 5
+  interest: 5
 --- !u!1 &5488505809270408557
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877867955751890}
   - component: {fileID: 5628877867955751891}
+  - component: {fileID: 7046002065235067360}
   m_Layer: 0
   m_Name: Tiny Island
   m_TagString: Untagged
@@ -873,6 +906,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &7046002065235067360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877867955751889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877867982238790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877868442013945}
   - component: {fileID: 3951608967113811195}
+  - component: {fileID: 1232286644352363438}
   m_Layer: 0
   m_Name: Medium Island (1)
   m_TagString: Untagged
@@ -2750,6 +2799,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &1232286644352363438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877868442013944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877868450242320
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,6 +7105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877869021921921}
   - component: {fileID: 4377533972256255878}
+  - component: {fileID: 1891698978234255838}
   m_Layer: 0
   m_Name: Medium Island
   m_TagString: Untagged
@@ -7101,6 +7166,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &1891698978234255838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877869021921920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877869123950445
 GameObject:
   m_ObjectHideFlags: 0
@@ -9097,6 +9177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877869357165403}
   - component: {fileID: 5628877869357165396}
+  - component: {fileID: 301777845550583380}
   m_Layer: 0
   m_Name: Small Island (2)
   m_TagString: Untagged
@@ -9208,6 +9289,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &301777845550583380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877869357165402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877869432247949
 GameObject:
   m_ObjectHideFlags: 0
@@ -10606,6 +10702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877869593003041}
   - component: {fileID: 5628877869593003042}
+  - component: {fileID: 3536198903252704038}
   m_Layer: 0
   m_Name: Small Island (1)
   m_TagString: Untagged
@@ -10717,6 +10814,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &3536198903252704038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877869593003040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877869622393678
 GameObject:
   m_ObjectHideFlags: 0
@@ -10727,6 +10839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628877869622393679}
   - component: {fileID: 5628877869622393672}
+  - component: {fileID: 8906029814652374710}
   m_Layer: 0
   m_Name: Small Island
   m_TagString: Untagged
@@ -10838,6 +10951,21 @@ MonoBehaviour:
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   - {fileID: 3390134409689662058, guid: 3d306d0befeb6ba498b1d85e8b9f7555, type: 3}
   objectsCount: 50
+--- !u!114 &8906029814652374710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628877869622393678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 50
+  interest: 5
 --- !u!1 &5628877869674210015
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,6 +12641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3049093710596620742}
   - component: {fileID: 8561949163311725233}
+  - component: {fileID: 3191792714252231124}
   m_Layer: 0
   m_Name: AI Target
   m_TagString: Untagged
@@ -12546,6 +12675,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63fb373edbd27290917cf4662a6b3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3191792714252231124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691431092045087876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 5
+  interest: 5
 --- !u!1001 &704445283410241927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12581,7 +12725,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.918
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -12591,7 +12735,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.311
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -17616,7 +17760,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.994
+      value: -2.89
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -17626,7 +17770,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.639
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -101426,7 +101570,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -101436,7 +101580,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -101493,6 +101637,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beacon (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1110111085290495817, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_RootOrder
@@ -101516,7 +101665,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.98
+      value: -1.86
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
@@ -101526,7 +101675,7 @@ PrefabInstance:
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.88
+      value: -2.07
       objectReference: {fileID: 0}
     - target: {fileID: 1110111085290495818, guid: 24f7e50fd547d6b42bde2ec61c540bb3,
         type: 3}

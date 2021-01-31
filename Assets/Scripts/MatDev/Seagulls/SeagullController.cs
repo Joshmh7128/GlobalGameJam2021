@@ -27,7 +27,7 @@ public class SeagullController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         t += Time.deltaTime;
         float lambda = 1 / spawnTime;

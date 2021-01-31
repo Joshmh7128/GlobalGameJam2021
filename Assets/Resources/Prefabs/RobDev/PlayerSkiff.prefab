@@ -2939,6 +2939,7 @@ GameObject:
   - component: {fileID: 4081049590176696620}
   - component: {fileID: 7382592409126580784}
   - component: {fileID: 161016575161569277}
+  - component: {fileID: 3177465011745431307}
   m_Layer: 0
   m_Name: PlayerSkiff
   m_TagString: Untagged
@@ -3037,6 +3038,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.43, y: 3.6, z: 15.62}
   m_Center: {x: 0, y: 0, z: 1.73}
+--- !u!114 &3177465011745431307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381115132764955734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb182857f7adb4bba8b18338308125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0
+  radius: 5
+  interest: 6
 --- !u!1 &6381115133953999034
 GameObject:
   m_ObjectHideFlags: 0
