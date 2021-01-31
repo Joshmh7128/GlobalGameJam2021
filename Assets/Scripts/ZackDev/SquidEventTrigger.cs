@@ -8,12 +8,13 @@ public class SquidEventTrigger : MonoBehaviour
     public class SquidEvent : BaseEvent
     {
         public EventManager manager;
-        public Rigidbody rb;
+        public Crew crew;
+        public Sprite picture;
 
         public override void SuccessEvent()
         {
             manager.DoConsequence(SuccessText);
-            rb.useGravity = true;
+            crew.AddCrew(new CrewMember { name = "Squid", perk = "Tentacles"/*, picture = picture */});
         }
 
         public override void FailEvent()
@@ -21,6 +22,8 @@ public class SquidEventTrigger : MonoBehaviour
             manager.DoConsequence(FailureText);
         }
     }
+
+    [Space(10)]
 
     public SquidEvent theEventInQuestion;
     private EventManager manager;

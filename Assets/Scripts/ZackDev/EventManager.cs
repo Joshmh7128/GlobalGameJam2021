@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
+    public Crew crew;
     public GameObject image;
     public Text myText;
 
@@ -33,18 +34,21 @@ public class EventManager : MonoBehaviour
 
         for (int i = 0; i < theEventInQuestion.choices.Length; i++)
         {
-            eventButton = Instantiate(buttonTemplate) as GameObject;
-            eventButton.SetActive(true);
+            if (theEventInQuestion.choices[i].perkNeeded == "" || crew.CheckForPerk(theEventInQuestion.choices[i].perkNeeded))
+            {
+                eventButton = Instantiate(buttonTemplate) as GameObject;
+                eventButton.SetActive(true);
 
-            buttons.Add(eventButton);
+                buttons.Add(eventButton);
 
-            eventButton.transform.SetParent(buttonTemplate.transform.parent, false);
+                eventButton.transform.SetParent(buttonTemplate.transform.parent, false);
 
-            eventButtonScript = eventButton.GetComponent<EventButton>();
+                eventButtonScript = eventButton.GetComponent<EventButton>();
 
-            eventButtonScript.SetText(theEventInQuestion.choices[i].choiceText);
-            eventButtonScript.successRate = theEventInQuestion.choices[i].success;
-            eventButtonScript.Event = theEventInQuestion;
+                eventButtonScript.SetText(theEventInQuestion.choices[i].choiceText);
+                eventButtonScript.successRate = theEventInQuestion.choices[i].success;
+                eventButtonScript.Event = theEventInQuestion;
+            }
         }
 
         image.SetActive(true);
