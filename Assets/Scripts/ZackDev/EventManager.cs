@@ -46,7 +46,7 @@ public class EventManager : MonoBehaviour
                 eventButtonScript = eventButton.GetComponent<EventButton>();
 
                 eventButtonScript.SetText(theEventInQuestion.choices[i].choiceText);
-                eventButtonScript.successRate = theEventInQuestion.choices[i].success;
+                eventButtonScript.outcomeNumber = i;
                 eventButtonScript.Event = theEventInQuestion;
             }
         }
