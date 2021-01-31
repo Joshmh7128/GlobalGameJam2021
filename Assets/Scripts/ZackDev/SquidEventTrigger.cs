@@ -10,18 +10,19 @@ public class SquidEventTrigger : MonoBehaviour
         public EventManager manager;
         public Crew crew;
         public Sprite picture;
-        public MoneyPouch money;
+        public ShipHealth health;
 
         public override void SuccessEvent()
         {
             manager.DoConsequence(SuccessText);
-            crew.AddCrew(new CrewMember { name = "Squid", perk = "Tentacles"/*, picture = picture */});
+            // crew.AddCrew(new CrewMember { name = "Squid", perk = "Tentacles"/*, picture = picture */});
+            health.Heal(2);
         }
 
         public override void FailEvent()
         {
             manager.DoConsequence(FailureText);
-            money.UpdateMoney(-5);
+            health.TakeDamage(1);
         }
     }
 
