@@ -17,4 +17,6 @@ public abstract class InputComponent : MonoBehaviour
     public bool SailsLeft { get; protected set; }
 
     public bool SailsRight { get; protected set; }
+
+    public bool Anchor { get; protected set; }
 }

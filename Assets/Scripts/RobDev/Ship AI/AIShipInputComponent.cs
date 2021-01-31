@@ -18,7 +18,6 @@ public class AIShipInputComponent : InputComponent
             else
             {
                 target = AIShipTargetManager.GetTarget();
-                Debug.Log(target);
                 return target;
             }
         }
@@ -44,14 +43,19 @@ public class AIShipInputComponent : InputComponent
                 SetSpeed(true);
                 SetDirection();
                 SetSails();
+                Anchor = false;
 
-                if (Vector3.Distance(transform.position, target.transform.position) < 1)
+                if (Target == null)
+                    break;
+
+                if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z)) < 1)
                 {
                     StartCoroutine(nameof(SwitchTargets));
                 }
                 break;
             case State.Wait:
                 SetSpeed(false);
+                Anchor = true;
                 break;
         }
     }
@@ -76,6 +80,35 @@ public class AIShipInputComponent : InputComponent
 
     void SetDirection()
     {
+        #region raycasts
+        RaycastHit leftHit;
+        RaycastHit rightHit;
+
+        bool rayHit = false;
+
+        if (Physics.Raycast(transform.position, (transform.forward + -transform.right), out leftHit, 100, LayerMask.GetMask("ShipSteeringCollider")))
+        {
+            rayHit = true;
+            RudderLeft = false;
+            RudderRight = true;
+        }
+
+        if (Physics.Raycast(transform.position, (transform.forward + transform.right), out rightHit, 100, LayerMask.GetMask("ShipSteeringCollider")))
+        {
+            rayHit = true;
+            RudderLeft = true;
+            RudderRight = false;
+        }
+
+        Debug.DrawRay(transform.position, (transform.forward + transform.right) * rightHit.distance);
+        Debug.DrawRay(transform.position, (transform.forward + -transform.right) * leftHit.distance);
+
+        if (rayHit || Target == null)
+        {
+            return;
+        }
+
+        #endregion
         Vector3 directionToTarget = (Target.transform.position - transform.position).normalized;
 
         directionToTarget.Normalize();
@@ -107,7 +140,7 @@ public class AIShipInputComponent : InputComponent
 
     void SetSails()
     {
-        if (controller.CalculateWind() > 0.6f)
+        if (controller.CalculateWind() > 0.8f)
         {
             SailsRight = false;
             SailsLeft = false;
