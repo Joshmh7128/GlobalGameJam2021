@@ -8,6 +8,11 @@ public class MoneyPouch : MonoBehaviour
     public int doubloons = 15;
     public Text text;
 
+    private void Start()
+    {
+        UpdateMoney(0);
+    }
+
     public void UpdateMoney(int change)
     {
         doubloons += change;
