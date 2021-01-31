@@ -15,6 +15,8 @@ public class PlayerCameraOrbit : MonoBehaviour
     public float orbitDampening = 10f;
     public float scrollDampening = 6f;
 
+    public float maxCameraZoom = 200;
+
     public bool cameraDisabled = false;
 
     // Start is called before the first frame update
@@ -57,7 +59,7 @@ public class PlayerCameraOrbit : MonoBehaviour
                 this._CameraDistance += scrollAmount * -1f;
 
                 // Camera will go no closer than 1.5 from the target, and no further than x
-                this._CameraDistance = Mathf.Clamp(this._CameraDistance, 1.5f, 200f);
+                this._CameraDistance = Mathf.Clamp(this._CameraDistance, 1.5f, maxCameraZoom);
             }
 
             // Actual camera rig rotations

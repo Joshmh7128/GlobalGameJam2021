@@ -45,6 +45,15 @@ public class PlayerInputComponent : InputComponent
             {
                 Anchor = !Anchor;
             }
+
+            Fish = inputPlayer.GetButtonDown("Fish");
+            if (!Anchor && Fish)
+                Anchor = true;
+
+            Interact = inputPlayer.GetButton("Interact");
+
+
+
         }
     }
 }
