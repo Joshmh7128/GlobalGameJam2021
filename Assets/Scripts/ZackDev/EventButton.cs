@@ -7,20 +7,32 @@ public class EventButton : MonoBehaviour
 {
     public BaseEvent Event;
     public Text myText;
-    public bool successRate;
+    public int outcomeNumber;
     public GameObject image;
 
     public void ButtonStuff()
     {
-        if (successRate)
+        if (outcomeNumber == 0)
         {
-            Event.SuccessEvent();
+            Event.Outcome0();
         }
-        else if (!successRate)
+        else if (outcomeNumber == 1)
         {
-            Event.FailEvent();
+            Event.Outcome1();
         }
-        
+        else if (outcomeNumber == 2)
+        {
+            Event.Outcome2();
+        }
+        else if (outcomeNumber == 3)
+        {
+            Event.Outcome3();
+        }
+        else if (outcomeNumber == 4)
+        {
+            Event.Outcome4();
+        }
+
         image.SetActive(false);
     }
 
