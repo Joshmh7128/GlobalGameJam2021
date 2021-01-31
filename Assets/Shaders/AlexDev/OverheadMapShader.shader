@@ -3,6 +3,9 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _BgTex ("Background Texture", 2D) = "white" {}
+        _OutlineColor ("Outline Color", Color) = (1,1,1,1)
+        _OutlineWidth ("Outline Width", Range(0.0, 10.0)) = 1.0
     }
     SubShader
     {
@@ -14,10 +17,9 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "Assets/Shaders/AlexDev/HLSL/SobelFilter.hlsl"
 
             struct appdata
             {
@@ -34,22 +36,38 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            
+            sampler2D _BgTex;
+            float4 _BgTex_ST;
 
+            float4 _OutlineColor;
+            float _OutlineWidth;
+
+            float4 _PlayerPos;
+            
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float camSize = 1000;
+                float2 bgUv = frac(float2(_PlayerPos.x / camSize, _PlayerPos.z / camSize));
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                bgUv.x += + _SinTime.y / 3;
+                fixed4 bgCol = tex2D(_BgTex, frac(i.uv + bgUv));
+                float tau = step(col.a, 0.5);
+                col = lerp(col, bgCol, tau);
+                
+                float4 outlineTau = getSobel(_MainTex, i.uv, _OutlineWidth);
+                tau = max(max(max(outlineTau.x, outlineTau.y), outlineTau.z), outlineTau.w);
+                col = lerp(col, _OutlineColor, tau);
+                
                 return col;
             }
             ENDCG
