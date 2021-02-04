@@ -9,12 +9,14 @@ public class Sirens : MonoBehaviour
     {
         public EventManager manager;
         public ShipHealth health;
+        public Crew crew;
         // Put references to whatever systems you're interacting with here.
 
         public override void Outcome0()
         {
             manager.DoConsequence(Outcome0Text);
             // Here is where you put function calls for each outcome.
+            crew.RemoveCrew("Crew Member");
         }
 
         public override void Outcome1()
